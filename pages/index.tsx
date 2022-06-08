@@ -1,22 +1,26 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import SectionBox from '../components/layouts/SectionBox'
 
 const Home: NextPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="flex min-h-screen flex-col items-center justify-center">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
+      <SectionBox layout='center' className='bg-green-800'>
         <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
+          This is a full screen{" "}
+          <span className="text-warning" >
+            SectionBox
+          </span>
         </h1>
+      </SectionBox>
+
+      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
 
         <p className="mt-3 text-2xl">
           Get started by editing{' '}
