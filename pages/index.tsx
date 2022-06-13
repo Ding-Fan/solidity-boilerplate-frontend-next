@@ -1,9 +1,29 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import { ReactElement, useEffect } from 'react'
+import Layout from '../components/layouts/Layout'
 import SectionBox from '../components/layouts/SectionBox'
+import { useMask } from '../context/MaskContext'
+import { NextPageWithLayout } from './_app'
+import heroImage from '../public/assets/bg.jpg'
 
-const Home: NextPage = () => {
+const Home: NextPageWithLayout = () => {
+
+  const { setHasMask } = useMask()
+
+  useEffect(() => {
+
+    setHasMask(true)
+    const id = setTimeout(() => {
+      setHasMask(false)
+    }, 3000)
+
+    return () => {
+      clearTimeout(id)
+    }
+  }, [])
+
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
       <Head>
@@ -11,13 +31,20 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SectionBox layout='center' className='bg-green-800'>
-        <h1 className="text-6xl font-bold">
-          This is a full screen{" "}
-          <span className="text-warning" >
-            SectionBox
-          </span>
-        </h1>
+      <SectionBox layout='center' className=''>
+        <div className="z-10">
+          <h1 className="text-6xl font-bold">
+            This is a full screen{" "}
+            <span className="text-warning underline-animation" >
+              SectionBox
+            </span>
+          </h1>
+        </div>
+        <div className="absolute top-0 w-full h-full blur brightness-65   max-h-screen">
+          {/* <Image layout="responsive" className="invisible lg:visible h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src={heroImage} /> */}
+          {/* <Image layout="responsive" className="invisible 2xl:visible object-cover w-full h-full" src={heroImage} /> */}
+          <Image layout="fill" className=" object-cover w-full h-full" src={heroImage} />
+        </div>
       </SectionBox>
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
@@ -71,19 +98,16 @@ const Home: NextPage = () => {
           </a>
         </div>
       </main>
-
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
     </div>
+  )
+}
+
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      {page}
+    </Layout>
   )
 }
 
