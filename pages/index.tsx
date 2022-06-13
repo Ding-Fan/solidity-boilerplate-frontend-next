@@ -40,7 +40,7 @@ const Home: NextPageWithLayout = () => {
             </span>
           </h1>
         </div>
-        <div className="absolute top-0 w-full h-full blur brightness-65   max-h-screen">
+        <div className="absolute top-0 w-full h-full blur brightness-65">
           {/* <Image layout="responsive" className="invisible lg:visible h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src={heroImage} /> */}
           {/* <Image layout="responsive" className="invisible 2xl:visible object-cover w-full h-full" src={heroImage} /> */}
           <Image layout="fill" className=" object-cover w-full h-full" src={heroImage} />
