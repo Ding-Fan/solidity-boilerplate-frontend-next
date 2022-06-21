@@ -2,17 +2,19 @@ import Link from 'next/link'
 import React from 'react'
 import Logo from '../Logo'
 
-type Props = {}
+type Props = {
+  fixed?: boolean
+}
 
 const styles = {
-  header: "w-full absolute z-20 py-2 flex justify-between px-5 shadow-md font-bold text-white bg-dark",
+  header: "w-full z-20 py-2 flex justify-between px-5 font-bold text-white bg-transparent",
   item: 'invisible self-center lg:px-7 md:px-5 py-3 md:visible cursor-pointer underline-animation',
   logo: 'self-center'
 }
 
-const Header = (props: Props) => {
+const Header = ({ fixed }: Props) => {
   return (
-    <div className={styles.header}>
+    <div className={styles.header + ' ' + (fixed ? 'fixed' : 'absolute')}>
       <div >
         <Link href='/' passHref >
           <a className="flex content-center">
@@ -30,27 +32,29 @@ const Header = (props: Props) => {
       <div className="flex ">
         {
           [
+            // [
+            //   'Home',
+            //   '/'
+            // ],
             [
-              'Home',
-              '/'
+              'Part A',
+              '/#partA'
             ],
             [
-              'NFT',
-              '/NFT'
+              'Part B',
+              '/#partB'
             ],
             [
-              'About',
-              '/about'
-            ],
-            [
-              'Contact',
-              '/contact'
+              'Part C',
+              '/#partC'
             ],
           ].map(
             ([title, href]) => (
-              <div key={title} className={styles.item}>
+              <div key={title} className="self-center">
                 <Link href={href}>
-                  {title}
+                  <span className={styles.item}>
+                    {title}
+                  </span>
                 </Link>
               </div>
             )

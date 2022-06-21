@@ -2,8 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+}
+
 @layer components {
   .underline-animation {
     @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100;
+  }
+  .neon-border {
+    box-shadow: 0 0 2px #f9cebf, 0 0 4px #f4ab95, 0 0 6px 1px #ef9079,
+      0 0 8px 2px #e73f39, inset 0 0 2px #f9cebf, inset 0 0 4px #f4ab95,
+      inset 0 0 6px 1px #ef9079, inset 0 0 8px 2px #e73f39;
+    border: 2px solid #f9cebf;
   }
 }

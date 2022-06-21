@@ -6,6 +6,7 @@ import SectionBox from '../components/layouts/SectionBox'
 import { useMask } from '../context/MaskContext'
 import { NextPageWithLayout } from './_app'
 import heroImage from '../public/assets/bg.jpg'
+import Link from 'next/link'
 
 const Home: NextPageWithLayout = () => {
 
@@ -23,6 +24,48 @@ const Home: NextPageWithLayout = () => {
     }
   }, [])
 
+  const bookmarks =
+  {
+    sections: [
+      {
+        name: '',
+        icon: '',
+        items: [
+          {
+            "title": "Telegram",
+            "description": "",
+            "icon": "fab fa-telegram",
+            "url": "https://web.telegram.org/k/",
+            "target": "newtab",
+            "color": "#25a4e2",
+            "id": "2_1381_telegram"
+          },
+          {
+            "title": "Mastodon",
+            "description": "",
+            "icon": "fab fa-mastodon",
+            "url": "https://mastodon.online/",
+            "target": "newtab",
+            "color": "#2b90d9",
+            "id": "0_1381_mastodon"
+          }
+        ]
+      },
+      {
+        name: '',
+        icon: '',
+        items: [
+          {
+            "title": "tailwindCSS",
+            "url": "https://tailwindcss.com/docs/visibility#making-elements-invisible",
+            "id": "5_278_tailwindcss"
+          }
+        ]
+      }
+    ]
+  }
+
+
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
@@ -31,7 +74,7 @@ const Home: NextPageWithLayout = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SectionBox layout='center' className=''>
+      <SectionBox layout='center' className='relative'>
         <div className="z-10">
           <h1 className="text-6xl font-bold">
             This is a full screen{" "}
@@ -40,11 +83,40 @@ const Home: NextPageWithLayout = () => {
             </span>
           </h1>
         </div>
-        <div className="absolute top-0 w-full h-full blur brightness-65">
+        <div className="absolute w-full h-full blur brightness-65">
           {/* <Image layout="responsive" className="invisible lg:visible h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src={heroImage} /> */}
           {/* <Image layout="responsive" className="invisible 2xl:visible object-cover w-full h-full" src={heroImage} /> */}
-          <Image layout="fill" className=" object-cover w-full h-full" src={heroImage} />
+          {/* <Image layout="fill" className=" object-cover w-full h-full" src={heroImage} /> */}
         </div>
+      </SectionBox>
+      <SectionBox id="partA" className='flex flex-col gap-5' >
+        {
+          bookmarks.sections.map(i => {
+            return (
+
+              <div className="section flex flex-col gap-2">
+                {
+                  i.items.map(j => {
+                    return (
+                      <a className='cursor-pointer border-2 bg-yellow-800' target={j.target ?? '_blank'} href={j.url}>
+                        {j.title}
+                      </a>
+                    )
+
+                  })
+                }
+
+              </div>
+            )
+          })
+
+        }
+      </SectionBox>
+      <SectionBox id="partB"  >
+        partB
+      </SectionBox>
+      <SectionBox id="partC"  >
+        partC
       </SectionBox>
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">

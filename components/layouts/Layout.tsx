@@ -8,8 +8,8 @@ interface Props {
 
 export default function Layout({ children }: Props) {
     return (
-        <div className="bg-asumicha text-white">
-            <Header />
+        <div className="bg-black text-white">
+            <Header fixed={true} />
             <main className="relative top-0" >{children}</main>
             <Footer />
         </div>

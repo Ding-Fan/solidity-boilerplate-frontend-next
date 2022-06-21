@@ -4,9 +4,10 @@ type Props = {
   children?: React.ReactNode
   layout?: 'center'
   className?: string
+  id?: string
 }
 
-const SectionBox = ({ children, layout, className }: Props) => {
+const SectionBox = ({ id, children, layout, className }: Props) => {
 
   let classList: string[] = [
     'min-h-screen', 'max-w-screen', 'min-w-full'
@@ -25,7 +26,7 @@ const SectionBox = ({ children, layout, className }: Props) => {
   }
 
   return (
-    <section className={classList.join(' ')}>{children}</section>
+    <section id={id ?? ''} className={classList.join(' ')}>{children}</section>
   )
 }
 
